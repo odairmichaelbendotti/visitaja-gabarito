@@ -1,0 +1,197 @@
+@import "tailwindcss";
+
+/* Fontes carregadas em app/layout.tsx via next/font */
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+}
+
+/*
+  Tema VisitaJá — importado do Design System (Figma "Foundations · VisitaJá").
+  Identidade violeta + coral · Space Grotesk (títulos) / Inter (texto e interface).
+  Use sempre estes tokens; nunca valores soltos nos componentes.
+*/
+@theme {
+  /* ---------- Paleta: violeta (cor principal) ---------- */
+  --color-violeta-50: #f4f1ff;
+  --color-violeta-100: #e8e1ff;
+  --color-violeta-200: #d2c2ff;
+  --color-violeta-300: #b39bff;
+  --color-violeta-400: #8f6bff;
+  --color-violeta-500: #6e3ef2;
+  --color-violeta-600: #5a28d9;
+  --color-violeta-700: #4820ac;
+  --color-violeta-800: #361a80;
+  --color-violeta-900: #241356;
+
+  /* ---------- Paleta: coral (cor de apoio) ---------- */
+  --color-coral-50: #fff3ee;
+  --color-coral-100: #ffe3d6;
+  --color-coral-200: #ffc4ac;
+  --color-coral-300: #ff9e78;
+  --color-coral-400: #ff7c48;
+  --color-coral-500: #f65a24;
+  --color-coral-600: #d6410f;
+  --color-coral-700: #a6320b;
+
+  /* ---------- Paleta: estados ---------- */
+  --color-verde-50: #e7f7ee;
+  --color-verde-500: #12a150;
+  --color-verde-600: #0b7c3d;
+  --color-ambar-50: #fef4e2;
+  --color-ambar-500: #f59e0b;
+  --color-ambar-600: #c97e06;
+  --color-rosa-50: #fdecec;
+  --color-rosa-500: #e5484d;
+  --color-rosa-600: #c2363b;
+
+  /* ---------- Paleta: escala de cinzas ---------- */
+  --color-cinza-0: #ffffff;
+  --color-cinza-50: #f7f7fa;
+  --color-cinza-100: #eeeef3;
+  --color-cinza-200: #e1e1ea;
+  --color-cinza-300: #cbcbd8;
+  --color-cinza-400: #9b9bb0;
+  --color-cinza-500: #6e6e85;
+  --color-cinza-600: #55556a;
+  --color-cinza-700: #3f3f52;
+  --color-cinza-800: #2a2a38;
+  --color-cinza-900: #191922;
+  --color-cinza-950: #101017;
+
+  /*
+    Semânticas (aliases do Figma "text/*", "bg/*", "border/*").
+    Renomeadas para casar com os prefixos de utility do Tailwind:
+    fundo → bg-canvas/bg-surface/bg-brand…; texto → text-content/text-content-muted…;
+    borda → border-border/border-border-focus…
+  */
+
+  /* ---------- Semânticas: fundo ---------- */
+  --color-canvas: #f7f7fa;         /* bg/canvas   */
+  --color-surface: #ffffff;        /* bg/surface  */
+  --color-muted: #eeeef3;          /* bg/muted    */
+  --color-brand: #6e3ef2;          /* bg/brand    */
+  --color-brand-hover: #5a28d9;    /* bg/brand-hover */
+  --color-accent: #f65a24;         /* bg/accent   */
+  --color-brand-subtle: #f4f1ff;   /* bg/brand-subtle   */
+  --color-accent-subtle: #fff3ee;  /* bg/accent-subtle  */
+  --color-success-subtle: #e7f7ee; /* bg/success-subtle */
+  --color-warning-subtle: #fef4e2; /* bg/warning-subtle */
+  --color-danger-subtle: #fdecec;  /* bg/danger-subtle  */
+
+  /* ---------- Semânticas: texto / conteúdo ---------- */
+  --color-content: #191922;          /* text/primary   */
+  --color-content-muted: #6e6e85;    /* text/secondary */
+  --color-content-subtle: #9b9bb0;   /* text/muted     */
+  --color-content-brand: #5a28d9;    /* text/brand     */
+  --color-content-success: #0b7c3d;  /* text/success   */
+  --color-content-warning: #c97e06;  /* text/warning   */
+  --color-content-danger: #c2363b;   /* text/danger    */
+  --color-on-brand: #ffffff;         /* text/on-brand  */
+  --color-on-accent: #ffffff;        /* text/on-accent */
+
+  /* ---------- Semânticas: borda ---------- */
+  --color-border: #e1e1ea;         /* border/default */
+  --color-border-subtle: #eeeef3;  /* border/subtle  */
+  --color-border-brand: #6e3ef2;   /* border/brand   */
+  --color-border-focus: #8f6bff;   /* border/focus   */
+
+  /*
+    ---------- Espaçamento ----------
+    A escala do Design System (2 · 4 · 8 · 12 · 16 · 24 · 32 · 40 · 48 · 64 · 96)
+    é exatamente a grade nativa de 0.25rem do Tailwind — não criamos tokens
+    nomeados (evita colisão de `--spacing-xl` com `max-w-xl` etc.).
+    Use a escala numérica em p-/m-/gap-/size-/…:
+      2xs → 0.5 · xs → 1 · sm → 2 · md → 3 · lg → 4 · xl → 6
+      2xl → 8 · 3xl → 10 · 4xl → 12 · 5xl → 16 · 6xl → 24
+  */
+
+  /* ---------- Raio de borda ---------- */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+
+  /* ---------- Sombra ---------- */
+  --shadow-xs: 0 1px 2px 0 #1010170f;
+  --shadow-sm: 0 1px 2px 0 #1010170f, 0 2px 6px -1px #10101717;
+  --shadow-md: 0 4px 8px -2px #10101714, 0 10px 24px -4px #1010171f;
+  --shadow-lg: 0 8px 16px -4px #1010171a, 0 20px 40px -8px #10101729;
+  --shadow-brand: 0 10px 30px -6px #6e3ef259;
+
+  /*
+    Tipografia — escala do Design System.
+    Cada token define tamanho + altura de linha + tracking + peso.
+    Combine com a família correta: font-display (Space Grotesk) nos títulos,
+    font-sans (Inter) em corpo, rótulo e link.
+  */
+  --text-display-xl: 56px;
+  --text-display-xl--line-height: 60px;
+  --text-display-xl--letter-spacing: -1.5px;
+  --text-display-xl--font-weight: 700;
+
+  --text-display-l: 44px;
+  --text-display-l--line-height: 48px;
+  --text-display-l--letter-spacing: -1px;
+  --text-display-l--font-weight: 700;
+
+  --text-titulo-xl: 32px;
+  --text-titulo-xl--line-height: 40px;
+  --text-titulo-xl--letter-spacing: -0.5px;
+  --text-titulo-xl--font-weight: 700;
+
+  --text-titulo-l: 24px;
+  --text-titulo-l--line-height: 32px;
+  --text-titulo-l--letter-spacing: -0.3px;
+  --text-titulo-l--font-weight: 700;
+
+  --text-titulo-m: 20px;
+  --text-titulo-m--line-height: 28px;
+  --text-titulo-m--letter-spacing: -0.2px;
+  --text-titulo-m--font-weight: 500;
+
+  --text-titulo-s: 16px;
+  --text-titulo-s--line-height: 24px;
+  --text-titulo-s--letter-spacing: 0px;
+  --text-titulo-s--font-weight: 500;
+
+  --text-corpo-l: 18px;
+  --text-corpo-l--line-height: 29px;
+  --text-corpo-l--letter-spacing: 0px;
+  --text-corpo-l--font-weight: 400;
+
+  --text-corpo-m: 16px;
+  --text-corpo-m--line-height: 26px;
+  --text-corpo-m--letter-spacing: 0px;
+  --text-corpo-m--font-weight: 400;
+
+  --text-corpo-s: 14px;
+  --text-corpo-s--line-height: 22px;
+  --text-corpo-s--letter-spacing: 0px;
+  --text-corpo-s--font-weight: 400;
+
+  --text-rotulo-m: 14px;
+  --text-rotulo-m--line-height: 20px;
+  --text-rotulo-m--letter-spacing: 0px;
+  --text-rotulo-m--font-weight: 600;
+
+  --text-rotulo-s: 12px;
+  --text-rotulo-s--line-height: 16px;
+  --text-rotulo-s--letter-spacing: 0.4px;
+  --text-rotulo-s--font-weight: 600;
+
+  --text-link-m: 14px;
+  --text-link-m--line-height: 20px;
+  --text-link-m--letter-spacing: 0px;
+  --text-link-m--font-weight: 500;
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-content);
+  font-family: var(--font-sans);
+  font-size: var(--text-corpo-m);
+  line-height: var(--text-corpo-m--line-height);
+}
