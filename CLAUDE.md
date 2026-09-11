@@ -23,6 +23,11 @@ There is no test runner configured yet.
 - **Styling**: Tailwind CSS v4, configured entirely in `app/globals.css` via `@import "tailwindcss"` (no `tailwind.config.js`). PostCSS wiring in `postcss.config.mjs` (`@tailwindcss/postcss`). Add design tokens with an `@theme` block in `globals.css`.
 - **TypeScript**: `strict`, path alias `@/*` maps to the repo root (e.g. `import x from "@/app/..."`).
 - `next.config.ts` is currently empty scaffolding.
+- **Sessão do usuário**: `lib/store/user.ts` — store Zustand (`persist` em `localStorage`, sem backend ainda: `login()` grava um usuário de exemplo). Tem um campo `hydrated` que só fica `true` depois que o `localStorage` termina de carregar no cliente — não confie em `user`/`useIsLoggedIn()` antes disso (evita flash de conteúdo errado). Quando houver backend de verdade, essa hidratação client-side tende a ser trocada por checagem de sessão no servidor.
+- **Proteger uma rota**: envolva o retorno da `page.tsx` em `<RequireAuth>` (`lib/auth/RequireAuth.tsx`) — sem sessão, redireciona para `/login?redirecionar=<rota>`; a tela de login manda de volta pra lá depois de "entrar". Passe `requirePlan` para também exigir que `user.plan` esteja definido, redirecionando para `/onboarding` quando faltar. Ver `app/escolher-plano/page.tsx` como exemplo.
+- O `EXAMPLE_USER` (`lib/store/user.ts`) já tem `plan: "advanced"` — login/cadastro caem direto em `/visao-geral`. Para testar o fluxo de quem ainda não tem plano (onboarding → escolher-plano), mude esse campo para `null`.
+- **Route group do dashboard**: as páginas internas do dashboard (`/visao-geral`, `/corretores`, `/imoveis`, `/agenda`, `/configuracoes`) ficam em `app/(dashboard)/` — o parêntese é só organização de pastas e não aparece na URL. Nova página do dashboard (com `Sidebar` + `RequireAuth`) entra nessa pasta.
+- **Sub-abas dentro de uma página do dashboard**: quando uma página do menu tem abas que precisam de URL própria (ex.: Configurações → Plano/Equipe), use um `layout.tsx` na pasta da página para o que é compartilhado (`Sidebar`, cabeçalho, barra de abas) e uma subpasta por aba (`configuracoes/plano`, `configuracoes/equipe`) para o conteúdo. A barra de abas é um client component (`SettingsTabs.tsx`) que usa `usePathname()` para destacar a aba ativa e navega com `<Link>` de verdade. O endereço base (`/configuracoes`) só redireciona (`redirect()`) para a primeira aba.
 
 ## Notes
 
@@ -32,21 +37,26 @@ There is no test runner configured yet.
 ## Design system
 
 - Todos os tokens — cores, fontes, espaçamentos, raios, sombras e tipografia — ficam no bloco `@theme` de `app/globals.css`, importados do Figma "Foundations · VisitaJá". As fontes são carregadas em `app/layout.tsx`.
-- Classes a usar no código (Tailwind v4 gera uma utility por token):
-  - **Paletas cruas**: `violeta-*`, `coral-*`, `verde-*`, `ambar-*`, `rosa-*`, `cinza-*` (ex.: `bg-violeta-500`, `text-cinza-900`). Prefira as semânticas abaixo.
+- Classes a usar no código (Tailwind v4 gera uma utility por token). Os nomes dos tokens já estão em inglês — só o conteúdo visível (textos, rótulos) fica em português:
+  - **Paletas cruas**: `purple-*`, `coral-*`, `green-*`, `amber-*`, `pink-*`, `gray-*` (ex.: `bg-purple-500`, `text-gray-900`). Prefira as semânticas abaixo.
   - **Fundo (semântico)**: `bg-canvas`, `bg-surface`, `bg-muted`, `bg-brand`, `bg-brand-hover`, `bg-accent`, `bg-brand-subtle`, `bg-accent-subtle`, `bg-success-subtle`, `bg-warning-subtle`, `bg-danger-subtle`.
   - **Texto (semântico)**: `text-content`, `text-content-muted`, `text-content-subtle`, `text-content-brand`, `text-content-success`, `text-content-warning`, `text-content-danger`, `text-on-brand`, `text-on-accent`.
   - **Borda (semântico)**: `border-border`, `border-border-subtle`, `border-border-brand`, `border-border-focus` (e `ring-border-focus` para foco).
   - **Espaçamento**: escala numérica nativa do Tailwind (a grade de 0.25rem já cobre a escala do DS) — `0.5`=2 · `1`=4 · `2`=8 · `3`=12 · `4`=16 · `6`=24 · `8`=32 · `10`=40 · `12`=48 · `16`=64 · `24`=96, em `p-*`, `m-*`, `gap-*` (ex.: `gap-3`, `px-6`). Não há tokens de espaçamento nomeados (colidiriam com `max-w-xl` etc.).
   - **Raio**: `rounded-*` (`xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `full`).
   - **Sombra**: `shadow-*` (`xs`, `sm`, `md`, `lg`, `brand`).
-  - **Tipografia**: `text-display-xl/l`, `text-titulo-xl/l/m/s`, `text-corpo-l/m/s`, `text-rotulo-m/s`, `text-link-m` (já embutem tamanho + line-height + tracking + peso); família via `font-display` (Space Grotesk, títulos) ou `font-sans` (Inter, texto e interface).
+  - **Tipografia**: `text-display-xl/l`, `text-title-xl/l/m/s`, `text-body-l/m/s`, `text-label-m/s`, `text-link-m` (já embutem tamanho + line-height + tracking + peso); família via `font-display` (Space Grotesk, títulos) ou `font-sans` (Inter, texto e interface).
 ### Regras
 
 - Sempre use as classes do design system, nunca valores soltos (`#5a28d9`, `13px`, `gap-[10px]`). Falta um token? Adicione ao `@theme` de `globals.css`, não no JSX.
 - Todo elemento interativo (botão, link, item de menu, aba, linha clicável, etc.) tem estado de hover visível — além do foco por teclado — e `cursor-pointer` (o `<button>` nativo não traz o cursor de mão; quando desabilitado, `disabled:cursor-not-allowed`).
 - Toda mudança de estado (hover, foco, etc.) tem uma transição suave e curta — ex.: `transition-colors` (as durações padrão do Tailwind já servem).
 - Quando o design não mostra o hover de um elemento, defina um hover coerente com o design system, usando só as cores e estilos dele (ex.: `bg-brand` → `hover:bg-brand-hover`; superfície clara → `hover:bg-muted`; link de texto → `hover:text-content`).
+- Movimento é sempre suave: rolagem de âncora usa `scroll-behavior: smooth` (já ativo no `html`, com `scroll-padding-top` descontando a navbar fixa — use âncoras `href="#id"` normais); blocos que aparecem ao carregar a página usam a classe `appear` (fade + leve subida, definida em `globals.css`). Todo esse movimento é desligado sob `prefers-reduced-motion` — não recrie animações que ignorem isso.
+
+## Idioma no código
+
+O código (nomes de arquivo, componentes, props, variáveis, valores de variante, comentários) é em **inglês**. O que fica em **português**: texto visível na tela (rótulos, mensagens, placeholders), endereços de página (`/escolher-plano`, `/criar-conta` etc.) e âncoras (`#como-funciona`), e dados de exemplo (nomes, e-mails fictícios). Ex.: `Botao` → `Button`, prop `variante` → `variant` com valores `"primario"` → `"primary"`; mas o texto do botão continua "Agendar visita".
 
 ## Regras de frontend
 
@@ -60,6 +70,7 @@ There is no test runner configured yet.
 - Props tipadas com interface acima do componente. Props de texto e estilo têm valor padrão.
 - Variantes (ex.: botão primário e secundário) ficam em um objeto de mapeamento no topo do arquivo, não em if encadeado.
 - Todo componente novo aparece na página /preview, com uma instância de cada variante.
+- `FormField` com `type="password"` já mostra o botão de olho para alternar a senha — não é preciso passar prop extra. Por isso é `"use client"`.
 
 ### Next.js
 - Ao criar ou alterar componentes e páginas, siga a skill react-best-practices.
@@ -67,7 +78,7 @@ There is no test runner configured yet.
 - Use o componente Image do Next para imagens e Link para navegação entre páginas.
 
 ### HTML e acessibilidade
-- Use button para ações, Link para navegação, label em todo campo de formulário e alt em toda imagem.
+- Use button para ações, Link para navegação, label em todo campo de formulário e alt em toda imagem. `Button` aceita `href`: quando informado, renderiza um `<Link>` (navegação) em vez de `<button>` (ação) — mesmo estilo visual, tag certa por trás.
 - Todo elemento clicável funciona pelo teclado e mostra foco visível.
 
 ### Layout

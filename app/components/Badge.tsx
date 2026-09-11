@@ -1,30 +1,30 @@
 import type { HTMLAttributes, ReactNode } from "react";
 
-type Tom = "neutro" | "marca" | "sucesso" | "alerta" | "erro" | "accent";
+type Tone = "neutral" | "brand" | "success" | "warning" | "error" | "accent";
 
-const tons: Record<Tom, string> = {
-  neutro: "bg-muted text-content-muted",
-  marca: "bg-brand-subtle text-content-brand",
-  sucesso: "bg-success-subtle text-content-success",
-  alerta: "bg-warning-subtle text-content-warning",
-  erro: "bg-danger-subtle text-content-danger",
+const tones: Record<Tone, string> = {
+  neutral: "bg-muted text-content-muted",
+  brand: "bg-brand-subtle text-content-brand",
+  success: "bg-success-subtle text-content-success",
+  warning: "bg-warning-subtle text-content-warning",
+  error: "bg-danger-subtle text-content-danger",
   accent: "bg-accent text-on-accent",
 };
 
 interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
-  tom?: Tom;
+  tone?: Tone;
   children?: ReactNode;
 }
 
 export default function Badge({
-  tom = "neutro",
+  tone = "neutral",
   className = "",
   children = "Rascunho",
   ...props
 }: BadgeProps) {
   return (
     <span
-      className={`inline-flex items-center rounded-full px-2 py-0.5 text-rotulo-s ${tons[tom]} ${className}`}
+      className={`inline-flex items-center rounded-full px-2 py-0.5 text-label-s ${tones[tone]} ${className}`}
       {...props}
     >
       {children}

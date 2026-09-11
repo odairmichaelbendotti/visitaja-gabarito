@@ -1,26 +1,26 @@
 import type { HTMLAttributes, ReactNode } from "react";
 
-type Enfase = "padrao" | "destaque";
+type Emphasis = "default" | "highlight";
 
-const enfases: Record<Enfase, string> = {
-  padrao: "border border-border-subtle shadow-sm",
-  destaque: "border-2 border-border-brand shadow-md",
+const emphases: Record<Emphasis, string> = {
+  default: "border border-border-subtle shadow-sm",
+  highlight: "border-2 border-border-brand shadow-md",
 };
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
-  enfase?: Enfase;
+  emphasis?: Emphasis;
   children?: ReactNode;
 }
 
 export default function Card({
-  enfase = "padrao",
+  emphasis = "default",
   className = "",
   children,
   ...props
 }: CardProps) {
   return (
     <div
-      className={`flex flex-col gap-2 rounded-lg bg-surface p-6 ${enfases[enfase]} ${className}`}
+      className={`flex flex-col gap-2 rounded-lg bg-surface p-6 ${emphases[emphasis]} ${className}`}
       {...props}
     >
       {children}

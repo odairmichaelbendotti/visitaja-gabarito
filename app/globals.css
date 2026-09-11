@@ -1,30 +1,30 @@
 @import "tailwindcss";
 
-/* Fontes carregadas em app/layout.tsx via next/font */
+/* Fonts loaded in app/layout.tsx via next/font */
 @theme inline {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
 }
 
 /*
-  Tema VisitaJá — importado do Design System (Figma "Foundations · VisitaJá").
-  Identidade violeta + coral · Space Grotesk (títulos) / Inter (texto e interface).
-  Use sempre estes tokens; nunca valores soltos nos componentes.
+  VisitaJá theme — imported from the Design System (Figma "Foundations · VisitaJá").
+  Purple + coral identity · Space Grotesk (titles) / Inter (body and UI).
+  Always use these tokens; never loose values in components.
 */
 @theme {
-  /* ---------- Paleta: violeta (cor principal) ---------- */
-  --color-violeta-50: #f4f1ff;
-  --color-violeta-100: #e8e1ff;
-  --color-violeta-200: #d2c2ff;
-  --color-violeta-300: #b39bff;
-  --color-violeta-400: #8f6bff;
-  --color-violeta-500: #6e3ef2;
-  --color-violeta-600: #5a28d9;
-  --color-violeta-700: #4820ac;
-  --color-violeta-800: #361a80;
-  --color-violeta-900: #241356;
+  /* ---------- Palette: purple (primary color) ---------- */
+  --color-purple-50: #f4f1ff;
+  --color-purple-100: #e8e1ff;
+  --color-purple-200: #d2c2ff;
+  --color-purple-300: #b39bff;
+  --color-purple-400: #8f6bff;
+  --color-purple-500: #6e3ef2;
+  --color-purple-600: #5a28d9;
+  --color-purple-700: #4820ac;
+  --color-purple-800: #361a80;
+  --color-purple-900: #241356;
 
-  /* ---------- Paleta: coral (cor de apoio) ---------- */
+  /* ---------- Palette: coral (support color) ---------- */
   --color-coral-50: #fff3ee;
   --color-coral-100: #ffe3d6;
   --color-coral-200: #ffc4ac;
@@ -34,39 +34,39 @@
   --color-coral-600: #d6410f;
   --color-coral-700: #a6320b;
 
-  /* ---------- Paleta: estados ---------- */
-  --color-verde-50: #e7f7ee;
-  --color-verde-500: #12a150;
-  --color-verde-600: #0b7c3d;
-  --color-ambar-50: #fef4e2;
-  --color-ambar-500: #f59e0b;
-  --color-ambar-600: #c97e06;
-  --color-rosa-50: #fdecec;
-  --color-rosa-500: #e5484d;
-  --color-rosa-600: #c2363b;
+  /* ---------- Palette: states ---------- */
+  --color-green-50: #e7f7ee;
+  --color-green-500: #12a150;
+  --color-green-600: #0b7c3d;
+  --color-amber-50: #fef4e2;
+  --color-amber-500: #f59e0b;
+  --color-amber-600: #c97e06;
+  --color-pink-50: #fdecec;
+  --color-pink-500: #e5484d;
+  --color-pink-600: #c2363b;
 
-  /* ---------- Paleta: escala de cinzas ---------- */
-  --color-cinza-0: #ffffff;
-  --color-cinza-50: #f7f7fa;
-  --color-cinza-100: #eeeef3;
-  --color-cinza-200: #e1e1ea;
-  --color-cinza-300: #cbcbd8;
-  --color-cinza-400: #9b9bb0;
-  --color-cinza-500: #6e6e85;
-  --color-cinza-600: #55556a;
-  --color-cinza-700: #3f3f52;
-  --color-cinza-800: #2a2a38;
-  --color-cinza-900: #191922;
-  --color-cinza-950: #101017;
+  /* ---------- Palette: gray scale ---------- */
+  --color-gray-0: #ffffff;
+  --color-gray-50: #f7f7fa;
+  --color-gray-100: #eeeef3;
+  --color-gray-200: #e1e1ea;
+  --color-gray-300: #cbcbd8;
+  --color-gray-400: #9b9bb0;
+  --color-gray-500: #6e6e85;
+  --color-gray-600: #55556a;
+  --color-gray-700: #3f3f52;
+  --color-gray-800: #2a2a38;
+  --color-gray-900: #191922;
+  --color-gray-950: #101017;
 
   /*
-    Semânticas (aliases do Figma "text/*", "bg/*", "border/*").
-    Renomeadas para casar com os prefixos de utility do Tailwind:
-    fundo → bg-canvas/bg-surface/bg-brand…; texto → text-content/text-content-muted…;
-    borda → border-border/border-border-focus…
+    Semantic (aliases from Figma "text/*", "bg/*", "border/*").
+    Renamed to match Tailwind's utility prefixes:
+    background → bg-canvas/bg-surface/bg-brand…; text → text-content/text-content-muted…;
+    border → border-border/border-border-focus…
   */
 
-  /* ---------- Semânticas: fundo ---------- */
+  /* ---------- Semantic: background ---------- */
   --color-canvas: #f7f7fa;         /* bg/canvas   */
   --color-surface: #ffffff;        /* bg/surface  */
   --color-muted: #eeeef3;          /* bg/muted    */
@@ -79,7 +79,7 @@
   --color-warning-subtle: #fef4e2; /* bg/warning-subtle */
   --color-danger-subtle: #fdecec;  /* bg/danger-subtle  */
 
-  /* ---------- Semânticas: texto / conteúdo ---------- */
+  /* ---------- Semantic: text / content ---------- */
   --color-content: #191922;          /* text/primary   */
   --color-content-muted: #6e6e85;    /* text/secondary */
   --color-content-subtle: #9b9bb0;   /* text/muted     */
@@ -90,23 +90,23 @@
   --color-on-brand: #ffffff;         /* text/on-brand  */
   --color-on-accent: #ffffff;        /* text/on-accent */
 
-  /* ---------- Semânticas: borda ---------- */
+  /* ---------- Semantic: border ---------- */
   --color-border: #e1e1ea;         /* border/default */
   --color-border-subtle: #eeeef3;  /* border/subtle  */
   --color-border-brand: #6e3ef2;   /* border/brand   */
   --color-border-focus: #8f6bff;   /* border/focus   */
 
   /*
-    ---------- Espaçamento ----------
-    A escala do Design System (2 · 4 · 8 · 12 · 16 · 24 · 32 · 40 · 48 · 64 · 96)
-    é exatamente a grade nativa de 0.25rem do Tailwind — não criamos tokens
-    nomeados (evita colisão de `--spacing-xl` com `max-w-xl` etc.).
-    Use a escala numérica em p-/m-/gap-/size-/…:
+    ---------- Spacing ----------
+    The Design System scale (2 · 4 · 8 · 12 · 16 · 24 · 32 · 40 · 48 · 64 · 96)
+    is exactly Tailwind's native 0.25rem grid — we don't create named
+    tokens (avoids `--spacing-xl` colliding with `max-w-xl` etc.).
+    Use the numeric scale in p-/m-/gap-/size-/…:
       2xs → 0.5 · xs → 1 · sm → 2 · md → 3 · lg → 4 · xl → 6
       2xl → 8 · 3xl → 10 · 4xl → 12 · 5xl → 16 · 6xl → 24
   */
 
-  /* ---------- Raio de borda ---------- */
+  /* ---------- Border radius ---------- */
   --radius-xs: 4px;
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -114,7 +114,7 @@
   --radius-xl: 24px;
   --radius-2xl: 32px;
 
-  /* ---------- Sombra ---------- */
+  /* ---------- Shadow ---------- */
   --shadow-xs: 0 1px 2px 0 #1010170f;
   --shadow-sm: 0 1px 2px 0 #1010170f, 0 2px 6px -1px #10101717;
   --shadow-md: 0 4px 8px -2px #10101714, 0 10px 24px -4px #1010171f;
@@ -122,10 +122,10 @@
   --shadow-brand: 0 10px 30px -6px #6e3ef259;
 
   /*
-    Tipografia — escala do Design System.
-    Cada token define tamanho + altura de linha + tracking + peso.
-    Combine com a família correta: font-display (Space Grotesk) nos títulos,
-    font-sans (Inter) em corpo, rótulo e link.
+    Typography — Design System scale.
+    Each token defines size + line height + tracking + weight.
+    Pair with the right family: font-display (Space Grotesk) for titles,
+    font-sans (Inter) for body, label and link.
   */
   --text-display-xl: 56px;
   --text-display-xl--line-height: 60px;
@@ -137,50 +137,50 @@
   --text-display-l--letter-spacing: -1px;
   --text-display-l--font-weight: 700;
 
-  --text-titulo-xl: 32px;
-  --text-titulo-xl--line-height: 40px;
-  --text-titulo-xl--letter-spacing: -0.5px;
-  --text-titulo-xl--font-weight: 700;
+  --text-title-xl: 32px;
+  --text-title-xl--line-height: 40px;
+  --text-title-xl--letter-spacing: -0.5px;
+  --text-title-xl--font-weight: 700;
 
-  --text-titulo-l: 24px;
-  --text-titulo-l--line-height: 32px;
-  --text-titulo-l--letter-spacing: -0.3px;
-  --text-titulo-l--font-weight: 700;
+  --text-title-l: 24px;
+  --text-title-l--line-height: 32px;
+  --text-title-l--letter-spacing: -0.3px;
+  --text-title-l--font-weight: 700;
 
-  --text-titulo-m: 20px;
-  --text-titulo-m--line-height: 28px;
-  --text-titulo-m--letter-spacing: -0.2px;
-  --text-titulo-m--font-weight: 500;
+  --text-title-m: 20px;
+  --text-title-m--line-height: 28px;
+  --text-title-m--letter-spacing: -0.2px;
+  --text-title-m--font-weight: 500;
 
-  --text-titulo-s: 16px;
-  --text-titulo-s--line-height: 24px;
-  --text-titulo-s--letter-spacing: 0px;
-  --text-titulo-s--font-weight: 500;
+  --text-title-s: 16px;
+  --text-title-s--line-height: 24px;
+  --text-title-s--letter-spacing: 0px;
+  --text-title-s--font-weight: 500;
 
-  --text-corpo-l: 18px;
-  --text-corpo-l--line-height: 29px;
-  --text-corpo-l--letter-spacing: 0px;
-  --text-corpo-l--font-weight: 400;
+  --text-body-l: 18px;
+  --text-body-l--line-height: 29px;
+  --text-body-l--letter-spacing: 0px;
+  --text-body-l--font-weight: 400;
 
-  --text-corpo-m: 16px;
-  --text-corpo-m--line-height: 26px;
-  --text-corpo-m--letter-spacing: 0px;
-  --text-corpo-m--font-weight: 400;
+  --text-body-m: 16px;
+  --text-body-m--line-height: 26px;
+  --text-body-m--letter-spacing: 0px;
+  --text-body-m--font-weight: 400;
 
-  --text-corpo-s: 14px;
-  --text-corpo-s--line-height: 22px;
-  --text-corpo-s--letter-spacing: 0px;
-  --text-corpo-s--font-weight: 400;
+  --text-body-s: 14px;
+  --text-body-s--line-height: 22px;
+  --text-body-s--letter-spacing: 0px;
+  --text-body-s--font-weight: 400;
 
-  --text-rotulo-m: 14px;
-  --text-rotulo-m--line-height: 20px;
-  --text-rotulo-m--letter-spacing: 0px;
-  --text-rotulo-m--font-weight: 600;
+  --text-label-m: 14px;
+  --text-label-m--line-height: 20px;
+  --text-label-m--letter-spacing: 0px;
+  --text-label-m--font-weight: 600;
 
-  --text-rotulo-s: 12px;
-  --text-rotulo-s--line-height: 16px;
-  --text-rotulo-s--letter-spacing: 0.4px;
-  --text-rotulo-s--font-weight: 600;
+  --text-label-s: 12px;
+  --text-label-s--line-height: 16px;
+  --text-label-s--letter-spacing: 0.4px;
+  --text-label-s--font-weight: 600;
 
   --text-link-m: 14px;
   --text-link-m--line-height: 20px;
@@ -192,6 +192,45 @@ body {
   background-color: var(--color-canvas);
   color: var(--color-content);
   font-family: var(--font-sans);
-  font-size: var(--text-corpo-m);
-  line-height: var(--text-corpo-m--line-height);
+  font-size: var(--text-body-m);
+  line-height: var(--text-body-m--line-height);
+}
+
+/*
+  Motion
+  - Smooth anchor scrolling; `scroll-padding-top` accounts for the fixed navbar.
+  - `appear`: gentle entrance (fade + slight rise) for blocks on load.
+  - Everything is turned off when the system asks for reduced motion.
+*/
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility appear {
+  animation: appear 0.4s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -1,51 +1,61 @@
 import Image from "next/image";
 
-type Tamanho = "p" | "m" | "g";
+type Size = "s" | "m" | "l";
+type Tone = "subtle" | "solid" | "neutral";
 
-const tamanhos: Record<Tamanho, { caixa: string; texto: string; px: number }> = {
-  p: { caixa: "size-8", texto: "text-rotulo-s", px: 32 },
-  m: { caixa: "size-10", texto: "text-rotulo-m", px: 40 },
-  g: { caixa: "size-14", texto: "font-display text-titulo-s", px: 56 },
+const sizes: Record<Size, { box: string; text: string; px: number }> = {
+  s: { box: "size-8", text: "text-label-s", px: 32 },
+  m: { box: "size-10", text: "text-label-m", px: 40 },
+  l: { box: "size-14", text: "font-display text-title-s", px: 56 },
+};
+
+const tones: Record<Tone, string> = {
+  subtle: "bg-brand-subtle text-content-brand",
+  solid: "bg-brand text-on-brand",
+  neutral: "bg-muted text-content-muted",
 };
 
 interface AvatarProps {
-  nome?: string;
-  /** URL da foto. Sem foto, mostra as iniciais de `nome`. */
+  name?: string;
+  /** Photo URL. Without a photo, shows the initials from `name`. */
   src?: string;
-  tamanho?: Tamanho;
+  size?: Size;
+  /** `subtle` (light lilac background) is the default; `solid` is a full purple background, e.g. navbar; `neutral` is gray, e.g. a pending/inactive person. */
+  tone?: Tone;
   className?: string;
 }
 
-function iniciais(nome: string): string {
-  const partes = nome.trim().split(/\s+/).filter(Boolean);
-  if (partes.length === 0) return "";
-  const primeira = partes[0][0];
-  const ultima = partes.length > 1 ? partes[partes.length - 1][0] : "";
-  return (primeira + ultima).toUpperCase();
+function initials(name: string): string {
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  if (parts.length === 0) return "";
+  const first = parts[0][0];
+  const last = parts.length > 1 ? parts[parts.length - 1][0] : "";
+  return (first + last).toUpperCase();
 }
 
 export default function Avatar({
-  nome = "Marina Rocha",
+  name = "Marina Rocha",
   src,
-  tamanho = "p",
+  size = "s",
+  tone = "subtle",
   className = "",
 }: AvatarProps) {
-  const { caixa, texto, px } = tamanhos[tamanho];
+  const { box, text, px } = sizes[size];
 
   return (
     <span
-      className={`relative inline-flex ${caixa} shrink-0 items-center justify-center overflow-hidden rounded-full bg-brand-subtle ${className}`}
+      className={`relative inline-flex ${box} shrink-0 items-center justify-center overflow-hidden rounded-full ${tones[tone]} ${className}`}
     >
       {src ? (
         <Image
           src={src}
-          alt={nome}
+          alt={name}
           fill
           sizes={`${px}px`}
           className="object-cover"
         />
       ) : (
-        <span className={`${texto} text-content-brand`}>{iniciais(nome)}</span>
+        <span className={text}>{initials(name)}</span>
       )}
     </span>
   );
