@@ -128,7 +128,7 @@ export default function AgentsPage() {
                   Avançado (até 50 corretores).
                 </p>
               </div>
-              <Button variant="secondary" href="/escolher-plano">
+              <Button variant="secondary" href="/assinatura/escolher-plano">
                 Ver plano Avançado
               </Button>
             </div>

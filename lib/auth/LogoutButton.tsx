@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import type { ReactNode } from "react";
 import { useUserStore } from "@/lib/store/user";
 
 /**
@@ -9,7 +10,13 @@ import { useUserStore } from "@/lib/store/user";
  * the guard itself already sends to /login as soon as the session is gone —
  * here we just ask for "/" as the destination for anyone not on a protected route.
  */
-export default function LogoutButton({ className = "" }: { className?: string }) {
+export default function LogoutButton({
+  className = "",
+  children = "Sair",
+}: {
+  className?: string;
+  children?: ReactNode;
+}) {
   const router = useRouter();
   const logout = useUserStore((state) => state.logout);
 
@@ -24,7 +31,7 @@ export default function LogoutButton({ className = "" }: { className?: string })
       onClick={handleClick}
       className={`cursor-pointer ${className}`}
     >
-      Sair
+      {children}
     </button>
   );
 }

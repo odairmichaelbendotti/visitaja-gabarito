@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Button from "@/app/components/Button";
+import BrandLogoLink from "@/lib/auth/BrandLogoLink";
 import { EXAMPLE_CREDENTIALS } from "@/lib/store/user";
 import LoginForm from "./LoginForm";
 
@@ -107,10 +108,7 @@ export default function LoginPage() {
           <span className="flex items-center justify-center rounded-md bg-brand-subtle p-1.5 text-content-brand">
             <CalendarIcon />
           </span>
-          <span className="font-display text-title-l">
-            <span className="text-content">Visita</span>
-            <span className="text-content-brand">Já</span>
-          </span>
+          <BrandLogoLink className="font-display text-title-l" />
         </span>
 
         <div className="flex w-full max-w-105 flex-col items-center gap-6">

@@ -8,6 +8,7 @@ import Avatar from "@/app/components/Avatar";
 import TableHeader from "@/app/components/TableHeader";
 import Sidebar from "@/app/components/Sidebar";
 import SelectField from "@/app/components/SelectField";
+import ModalPreview from "./ModalPreview";
 
 export const metadata: Metadata = {
   title: "Preview de componentes · VisitaJá",
@@ -179,16 +180,14 @@ export default function PreviewPage() {
         </table>
       </Section>
 
+      <Section title="Modal">
+        <ModalPreview />
+      </Section>
+
       <Section title="Sidebar">
         <div className="flex flex-wrap gap-6">
           {(
-            [
-              "overview",
-              "agents",
-              "properties",
-              "schedule",
-              "settings",
-            ] as const
+            ["overview", "agents", "properties", "settings"] as const
           ).map((page) => (
             <div
               key={page}

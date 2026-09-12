@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
-import Avatar from "@/app/components/Avatar";
-import Badge from "@/app/components/Badge";
 import Button from "@/app/components/Button";
 import Card from "@/app/components/Card";
 import Sidebar from "@/app/components/Sidebar";
-import TableHeader from "@/app/components/TableHeader";
 import RequireAuth from "@/lib/auth/RequireAuth";
+import NextVisitsCard from "./NextVisitsCard";
 
 export const metadata: Metadata = {
   title: "Visão geral · VisitaJá",
@@ -77,54 +75,6 @@ const STATS = [
   },
 ];
 
-const STATUS = {
-  confirmed: { tone: "success", label: "Confirmada" },
-  pending: { tone: "warning", label: "Pendente" },
-} as const;
-
-const SCHEDULE = [
-  {
-    when: "Hoje 14:00",
-    propertyId: "#IM001",
-    address: "R. Oscar Freire, 980",
-    agent: "Marina Rocha",
-    client: "Bruno Tavares",
-    status: "confirmed",
-  },
-  {
-    when: "Hoje 16:30",
-    propertyId: "#IM002",
-    address: "Av. Faria Lima, 3477",
-    agent: "Rafael Nunes",
-    client: "Carla Menezes",
-    status: "pending",
-  },
-  {
-    when: "Amanhã 09:00",
-    propertyId: "#IM003",
-    address: "R. Fradique Coutinho, 1200",
-    agent: "Juliana Prado",
-    client: "Diego Ramos",
-    status: "confirmed",
-  },
-  {
-    when: "Amanhã 11:00",
-    propertyId: "#IM004",
-    address: "R. Harmonia, 745",
-    agent: "Marina Rocha",
-    client: "Fernanda Lima",
-    status: "confirmed",
-  },
-  {
-    when: "Qui 10:00",
-    propertyId: "#IM005",
-    address: "Al. Santos, 1500",
-    agent: "Rafael Nunes",
-    client: "Paulo Costa",
-    status: "pending",
-  },
-] as const;
-
 const POPULAR_PROPERTIES = [
   {
     address: "Rua Oscar Freire, 980 — Jardins",
@@ -189,60 +139,7 @@ export default function OverviewPage() {
             </div>
 
             <div className="flex flex-col items-start gap-4 lg:flex-row">
-              <Card className="w-full flex-1">
-                <span className="font-display text-title-s text-content">
-                  Próximas visitas
-                </span>
-                <div className="w-full overflow-x-auto">
-                  <table className="w-full min-w-150 border-collapse">
-                    <thead>
-                      <tr>
-                        <TableHeader align="center">Quando</TableHeader>
-                        <TableHeader align="center">Imóvel</TableHeader>
-                        <TableHeader align="left">Corretor</TableHeader>
-                        <TableHeader align="center">Cliente</TableHeader>
-                        <TableHeader align="right">Status</TableHeader>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {SCHEDULE.map((visit) => (
-                        <tr
-                          key={visit.propertyId}
-                          className="border-b border-border-subtle last:border-0"
-                        >
-                          <td className="px-4 py-3 text-center text-label-s text-content">
-                            {visit.when}
-                          </td>
-                          <td className="px-4 py-3">
-                            <div className="flex flex-col items-center gap-0.5">
-                              <Badge tone="neutral">{visit.propertyId}</Badge>
-                              <span className="text-center text-label-s text-content-muted">
-                                {visit.address}
-                              </span>
-                            </div>
-                          </td>
-                          <td className="px-4 py-3">
-                            <div className="flex items-center gap-2">
-                              <Avatar name={visit.agent} size="s" />
-                              <span className="whitespace-nowrap text-body-m text-content-muted">
-                                {visit.agent}
-                              </span>
-                            </div>
-                          </td>
-                          <td className="px-4 py-3 text-center text-body-m text-content-muted">
-                            {visit.client}
-                          </td>
-                          <td className="px-4 py-3 text-right">
-                            <Badge tone={STATUS[visit.status].tone}>
-                              {STATUS[visit.status].label}
-                            </Badge>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </Card>
+              <NextVisitsCard />
 
               <Card className="w-full lg:w-95">
                 <span className="font-display text-title-s text-content">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Button from "@/app/components/Button";
 import Card from "@/app/components/Card";
+import BrandLogoLink from "@/lib/auth/BrandLogoLink";
 import LogoutButton from "@/lib/auth/LogoutButton";
 import RequireAuth from "@/lib/auth/RequireAuth";
 import CurrentUser from "@/lib/auth/CurrentUser";
@@ -22,15 +23,18 @@ function CalendarIcon({ className = "size-10" }: { className?: string }) {
   );
 }
 
+const PENDING_INVITE = {
+  company: "Rocha & Lima Imóveis",
+  invitedBy: "Marina Rocha",
+  role: "Corretor",
+};
+
 export default function OnboardingPage() {
   return (
     <RequireAuth>
       <div className="flex min-h-dvh flex-1 flex-col bg-canvas">
         <header className="flex items-center justify-between border-b border-border-subtle bg-surface px-6 py-4 lg:px-16">
-          <span className="font-display text-title-m">
-            <span className="text-content">Visita</span>
-            <span className="text-content-brand">Já</span>
-          </span>
+          <BrandLogoLink className="font-display text-title-m" />
           <CurrentUser />
         </header>
 
@@ -42,24 +46,70 @@ export default function OnboardingPage() {
 
             <div className="flex flex-col gap-3">
               <h1 className="font-display text-title-xl text-content">
-                Você ainda não tem um plano ativo
+                Para começar, escolha um plano ou aceite o convite de uma
+                imobiliária
               </h1>
               <p className="text-body-m text-content-muted">
-                Para acessar o painel, cadastrar imóveis e gerenciar visitas,
-                escolha um plano que se encaixe na sua imobiliária.
+                Você ainda não tem um plano ativo. Selecione uma assinatura ou
+                aceite um convite pendente para acessar o painel e começar a
+                gerenciar visitas.
               </p>
             </div>
 
-            <div className="flex w-full flex-col gap-2">
-              <Button
-                variant="primary"
-                href="/escolher-plano"
-                className="w-full"
-              >
-                Escolher um plano
-              </Button>
-              <LogoutButton className="w-full rounded-md px-6 py-3 text-center text-label-m text-content-muted transition-colors hover:bg-muted" />
+            <div className="flex w-full flex-col gap-4">
+              <div className="flex w-full flex-col gap-3">
+                <span className="text-label-m text-content">
+                  Convites pendentes
+                </span>
+                <div className="flex w-full items-center gap-4 rounded-lg border border-border-subtle bg-surface p-4 text-left">
+                  <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+                    <span className="text-label-m text-content">
+                      {PENDING_INVITE.company}
+                    </span>
+                    <span className="text-body-s text-content-muted">
+                      Convidado por {PENDING_INVITE.invitedBy} para o papel de{" "}
+                      {PENDING_INVITE.role}
+                    </span>
+                  </div>
+                  <div className="flex shrink-0 flex-col items-start gap-2">
+                    <Button variant="primary">Aceitar</Button>
+                    <button
+                      type="button"
+                      className="cursor-pointer rounded-md px-6 py-3 text-label-m text-content-muted transition-colors hover:bg-muted"
+                    >
+                      Recusar
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex w-full items-center gap-2">
+                <hr className="flex-1 border-border-subtle" />
+                <span className="text-body-s text-content-subtle">ou</span>
+                <hr className="flex-1 border-border-subtle" />
+              </div>
+
+              <div className="flex w-full flex-col gap-3 text-left">
+                <span className="text-label-m text-content">
+                  Assinar um plano
+                </span>
+                <p className="text-body-s text-content-muted">
+                  Se preferir, escolha um plano que se encaixe no seu perfil e
+                  comece a usar o VisitaJá agora mesmo.
+                </p>
+                <Button
+                  variant="primary"
+                  href="/assinatura/escolher-plano"
+                  className="w-full"
+                >
+                  Escolher um plano
+                </Button>
+              </div>
             </div>
+
+            <LogoutButton className="w-full rounded-md px-6 py-3 text-center text-label-m text-content-muted transition-colors hover:bg-muted">
+              Sair da conta
+            </LogoutButton>
           </Card>
         </main>
       </div>

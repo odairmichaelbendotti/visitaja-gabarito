@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Avatar from "@/app/components/Avatar";
 import Button from "@/app/components/Button";
 import Sidebar from "@/app/components/Sidebar";
+import BrandLogoLink from "@/lib/auth/BrandLogoLink";
 
 export const metadata: Metadata = {
   title: "Convite para administrador · VisitaJá",
@@ -38,10 +39,7 @@ export default function AcceptInvitePage() {
 
       <div className="absolute inset-0 flex items-center justify-center bg-gray-950/40 p-4 backdrop-blur-sm">
         <div className="flex w-full max-w-130 flex-col items-center gap-6 rounded-lg bg-surface p-8 shadow-sm">
-          <span className="font-display text-title-m">
-            <span className="text-content">Visita</span>
-            <span className="text-content-brand">Já</span>
-          </span>
+          <BrandLogoLink className="font-display text-title-m" />
 
           <span className="flex size-16 items-center justify-center rounded-full bg-brand-subtle font-display text-title-l text-content-brand">
             {INVITE.companyInitials}

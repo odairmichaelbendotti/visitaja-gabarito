@@ -8,7 +8,8 @@ export default function CopyLinkButton({ link }: { link: string }) {
 
   async function handleClick() {
     try {
-      await navigator.clipboard.writeText(`https://${link}`);
+      const protocol = link.startsWith("localhost") ? "http" : "https";
+      await navigator.clipboard.writeText(`${protocol}://${link}`);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {

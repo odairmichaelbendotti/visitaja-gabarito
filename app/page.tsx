@@ -3,6 +3,7 @@ import Avatar from "@/app/components/Avatar";
 import Badge from "@/app/components/Badge";
 import Button from "@/app/components/Button";
 import Card from "@/app/components/Card";
+import BrandLogoLink from "@/lib/auth/BrandLogoLink";
 
 /* ---------- example data ---------- */
 
@@ -238,15 +239,6 @@ const FOOTER_COLUMNS = [
 
 /* ---------- local helpers ---------- */
 
-function Logo({ className = "" }: { className?: string }) {
-  return (
-    <span className={`font-display text-title-m ${className}`}>
-      <span className="text-content">Visita</span>
-      <span className="text-content-brand">Já</span>
-    </span>
-  );
-}
-
 function StrokeIcon({
   paths,
   viewBox = "0 0 24 24",
@@ -347,7 +339,7 @@ export default function Home() {
       {/* Navbar */}
       <header className="sticky top-0 z-10 border-b border-border-subtle bg-surface">
         <nav className="mx-auto flex max-w-6xl items-center gap-6 px-6 py-4 lg:px-16">
-          <Logo />
+          <BrandLogoLink className="font-display text-title-m" />
           <div className="hidden flex-1 items-center justify-center gap-8 lg:flex">
             {NAV_LINKS.map((link) => (
               <a
@@ -367,7 +359,7 @@ export default function Home() {
             >
               Entrar
             </Button>
-            <Button variant="primary" href="/escolher-plano">
+            <Button variant="primary" href="/assinatura/escolher-plano">
               Assinar agora
             </Button>
           </div>
@@ -389,7 +381,7 @@ export default function Home() {
                 cai direto na agenda do corretor responsável.
               </p>
               <div className="flex flex-wrap gap-2">
-                <Button variant="primary" href="/escolher-plano">
+                <Button variant="primary" href="/assinatura/escolher-plano">
                   Assinar agora
                 </Button>
                 <Button variant="secondary" href="#como-funciona">
@@ -601,7 +593,7 @@ export default function Home() {
               conversar — não para marcar horário.
             </p>
             <div className="flex flex-wrap justify-center gap-2 pt-2">
-              <Button variant="secondary" href="/escolher-plano">
+              <Button variant="secondary" href="/assinatura/escolher-plano">
                 Assinar agora
               </Button>
               <button

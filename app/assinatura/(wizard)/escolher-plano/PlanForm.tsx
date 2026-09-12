@@ -20,7 +20,7 @@ export default function PlanForm({ children }: { children: ReactNode }) {
     if (typeof plan === "string") {
       choosePlan(plan);
     }
-    router.push("/visao-geral");
+    router.push("/assinatura/imobiliaria");
   }
 
   return (

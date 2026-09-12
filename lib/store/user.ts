@@ -20,15 +20,15 @@ interface UserState {
 
 /**
  * The project doesn't have a real backend/authentication yet — `login()`
- * stores this example user instead of validating real credentials. It
- * simulates an existing customer on the "Avançado" plan — that's why
- * logging in goes straight to /visao-geral instead of /onboarding. Set
- * `plan: null` here to simulate someone who hasn't subscribed yet instead.
+ * stores this example user instead of validating real credentials. `plan:
+ * null` simulates someone with an account but no agency/plan linked yet —
+ * login/cadastro land on /onboarding instead of /visao-geral. Set a plan id
+ * (e.g. "advanced") here to simulate an existing subscribed customer instead.
  */
 export const EXAMPLE_USER: User = {
   name: "Marina Rocha",
   email: "marina@ancoraimoveis.com.br",
-  plan: "advanced",
+  plan: null,
 };
 
 /**

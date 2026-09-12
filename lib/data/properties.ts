@@ -31,6 +31,15 @@ export interface Property {
     attendanceRate: string;
     publishedAt: string;
   };
+  /** One-line neighborhood/city + distance blurb, shown on the public listing page. */
+  locationNote: string;
+  /** The 4 stat blocks (área útil / dormitórios / vagas / andar) on the public listing page. */
+  publicStats: {
+    area: string;
+    bedrooms: string;
+    parking: string;
+    floor: string;
+  };
 }
 
 const MARINA: PropertyAgent = {
@@ -105,6 +114,8 @@ export const PROPERTIES: Property[] = [
     ],
     agent: MARINA,
     stats: { visitsThisMonth: 9, attendanceRate: "78%", publishedAt: "14 de agosto de 2026" },
+    locationNote: "Jardins, São Paulo/SP · a 2 minutos da Rua Oscar Freire",
+    publicStats: { area: "98 m²", bedrooms: "3 (1 suíte)", parking: "2", floor: "8º de 12" },
   },
   {
     slug: "atlantica-2000",
@@ -135,6 +146,8 @@ export const PROPERTIES: Property[] = [
     ],
     agent: RAFAEL,
     stats: { visitsThisMonth: 5, attendanceRate: "82%", publishedAt: "2 de julho de 2026" },
+    locationNote: "Copacabana, Rio de Janeiro/RJ · a 3 minutos da praia",
+    publicStats: { area: "210 m²", bedrooms: "4 (2 suítes)", parking: "3", floor: "Cobertura duplex" },
   },
   {
     slug: "fradique-coutinho-1200",
@@ -163,6 +176,8 @@ export const PROPERTIES: Property[] = [
     ],
     agent: JULIANA,
     stats: { visitsThisMonth: 6, attendanceRate: "70%", publishedAt: "30 de junho de 2026" },
+    locationNote: "Pinheiros, São Paulo/SP · a 5 minutos do metrô Faria Lima",
+    publicStats: { area: "72 m²", bedrooms: "2", parking: "1", floor: "4º andar" },
   },
   {
     slug: "padre-chagas-415",
@@ -192,6 +207,8 @@ export const PROPERTIES: Property[] = [
     ],
     agent: CAMILA,
     stats: { visitsThisMonth: 3, attendanceRate: "88%", publishedAt: "10 de maio de 2026" },
+    locationNote: "Moinhos de Vento, Porto Alegre/RS · a 4 minutos do parque",
+    publicStats: { area: "260 m²", bedrooms: "4 (2 suítes)", parking: "4", floor: "2 pavimentos" },
   },
   {
     slug: "harmonia-745",
@@ -215,6 +232,8 @@ export const PROPERTIES: Property[] = [
     ],
     agent: DIEGO,
     stats: { visitsThisMonth: 8, attendanceRate: "75%", publishedAt: "18 de agosto de 2026" },
+    locationNote: "Vila Madalena, São Paulo/SP · a 3 minutos dos bares",
+    publicStats: { area: "64 m²", bedrooms: "2", parking: "1", floor: "2º andar" },
   },
   {
     slug: "alameda-santos-1500",
@@ -243,6 +262,8 @@ export const PROPERTIES: Property[] = [
     ],
     agent: MARINA,
     stats: { visitsThisMonth: 11, attendanceRate: "65%", publishedAt: "25 de agosto de 2026" },
+    locationNote: "Jardim Paulista, São Paulo/SP · a 6 minutos da Av. Paulista",
+    publicStats: { area: "38 m²", bedrooms: "1", parking: "Sem vaga", floor: "6º andar" },
   },
 ];
 

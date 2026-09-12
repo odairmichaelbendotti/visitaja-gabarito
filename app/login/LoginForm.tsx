@@ -42,7 +42,7 @@ export default function LoginForm() {
     // No backend yet: correct credentials "log in" with the example user.
     login(EXAMPLE_USER);
 
-    // If this came from a redirect (e.g. tried to open /escolher-plano
+    // If this came from a redirect (e.g. tried to open /assinatura/escolher-plano
     // while logged out), go back exactly there. With no requested
     // destination: whoever already has a plan goes to the dashboard
     // overview, whoever still doesn't goes to onboarding.
