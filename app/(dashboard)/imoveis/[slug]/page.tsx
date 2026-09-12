@@ -83,7 +83,7 @@ export default async function PropertyDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const appDomain = process.env.NEXT_PUBLIC_APP_DOMAIN ?? "visitaja.com.br";
+  const appDomain = process.env.APP_DOMAIN ?? "visitaja.com.br";
   const publicLink = `${appDomain}/imovel/${property.slug}?corretor=${encodeURIComponent(property.agent.email)}`;
 
   return (
